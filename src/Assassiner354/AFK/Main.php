@@ -43,7 +43,7 @@ class Main extends PluginBase implements Listener {
     }
   }
   public function onDamage(EntityDamageEvent $event) {
-    if($event->getEntity() instanceof Player && in_array($name, $this->afk) {
+    if($event->getEntity() instanceof Player && in_array($name, $this->afk)) {
       $event->setCancelled(true);
     }
   }
