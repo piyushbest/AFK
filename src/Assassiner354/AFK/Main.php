@@ -19,7 +19,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 
 class Main extends PluginBase implements Listener {
 
-  public $afk = array();
+  public static $afk = [];
   
   public function onEnable() {
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -29,22 +29,22 @@ class Main extends PluginBase implements Listener {
     $player = $event->getPlayer();
     $name = $player->getName();
     $this->afk[] = $name;
-    if(in_array($name, $this->afk)) {
-      unset($this->afk[array_search($name, $this->afk)]);
+    if(in_array($name, self::$afk)) {
+      unset(self::$afk[array_search($name, self::$afk)]);
     }
   }
   
   public function onMove(PlayerMoveEvent $event) {
     $player = $event->getPlayer();
     $name = $player->getName();
-    if(in_array($name, $this->afk)) {
-      unset($this->afk[array_search($name, $this->afk)]);
+    if(in_array($name, self::$afk)) {
+      unset(self::$afk[array_search($name, self::$afk)]);
       $player->setDisplayName($name);
       $player->sendMessage(TF::GREEN . "You are no longer AFK!");
     }
   }
   public function onDamage(EntityDamageEvent $event) {
-    if($event->getEntity() instanceof Player && in_array($name, $this->afk)) {
+    if($event->getEntity() instanceof Player && in_array($name, self::$afk)) {
       $event->setCancelled(true);
     }
   }
