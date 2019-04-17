@@ -28,15 +28,21 @@ class Main extends PluginBase implements Listener {
   public function onQuit(PlayerQuitEvent $event) {
     $player = $event->getPlayer();
     $name = $player->getName();
-    unset($this->afk[array_search($name, $this->afk)]);
+    $this->afk[] = $name;
+    if(in_array($name, $this->afk)) {
+      unset($this->afk[array_search($name, $this->afk)]);
+    }
   }
   
   public function onMove(PlayerMoveEvent $event) {
     $player = $event->getPlayer();
     $name = $player->getName();
-    unset($this->afk[array_search($name, $this->afk)]);
-    $player->setDisplayName($name);
-    $player->sendMessage(TF::GREEN . "You are no longer AFK!");
+    $this->afk[] = $name;
+    if(in_array($name, $this->afk)) {
+      unset($this->afk[array_search($name, $this->afk)]);
+      $player->setDisplayName($name);
+      $player->sendMessage(TF::GREEN . "You are no longer AFK!");
+    }
   }
   public function onDamage(EntityDamageEvent $event) {
     if($event->getEntity() instanceof Player && in_array($name, $this->afk)) {
