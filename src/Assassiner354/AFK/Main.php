@@ -15,7 +15,6 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\event\entity\EntityDamageByEntityEvent;
 
 class Main extends PluginBase implements Listener {
 
@@ -62,7 +61,7 @@ class Main extends PluginBase implements Listener {
           $player->setDisplayName($name);
           $player->sendMessage(TF::GREEN . "You are no longer AFK!");
         } else {
-          $this->afk = $name;
+          self::$afk = $name;
           $sender->setDisplayName(TF::YELLOW . "[AFK] " . $name);
           $sender->sendMessage(TF::GREEN . "You are now AFK!");
         }
