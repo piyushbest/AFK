@@ -7,7 +7,7 @@ description: Simple /afk plugin for PocketMine
 
 commands:
   afk:
-    description: "AFK command"
+    description: AFK command
     permission: afk.cmd
 
 permission:
