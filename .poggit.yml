@@ -1,0 +1,7 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/A354-PH/AFK
+branches:
+- master
+projects:
+  AFK:
+    path: ""
+...
