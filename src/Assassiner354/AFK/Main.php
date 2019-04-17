@@ -65,7 +65,7 @@ class Main extends PluginBase implements Listener {
           $sender->setDisplayName(TF::YELLOW . "[AFK] " . $name);
           $sender->sendMessage(TF::GREEN . "You are now AFK!");
         }
-      break;
+        break;
     }
     return true;
   }
