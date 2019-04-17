@@ -4,3 +4,12 @@ api: [3.0.0]
 version: 1.0.0
 author: Assassiner354
 description: Simple /afk plugin for PocketMine
+
+commands:
+  afk:
+    description: "AFK command"
+    permission: afk.cmd
+
+permission:
+  afk.cmd:
+    default: true
