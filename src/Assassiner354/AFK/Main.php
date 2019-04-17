@@ -37,7 +37,6 @@ class Main extends PluginBase implements Listener {
   public function onMove(PlayerMoveEvent $event) {
     $player = $event->getPlayer();
     $name = $player->getName();
-    $this->afk[] = $name;
     if(in_array($name, $this->afk)) {
       unset($this->afk[array_search($name, $this->afk)]);
       $player->setDisplayName($name);
