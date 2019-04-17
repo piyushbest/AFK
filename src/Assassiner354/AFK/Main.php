@@ -20,3 +20,6 @@ class Main extends PluginBase implements Listener {
 
   public $afk = array();
   
+  public function onEnable() {
+    $this->getServer()->getPluginManager()->registerEvents($this, $this);
+  }
