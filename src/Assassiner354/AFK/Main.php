@@ -42,4 +42,9 @@ class Main extends PluginBase implements Listener {
       $player->sendMessage(TF::GREEN . "You are no longer AFK!");
     }
   }
+  public function onDamage(EntityDamageEvent $event) {
+    if($event->getEntity() instanceof Player && in_array($name, $this->afk) {
+      $event->setCancelled(true);
+    }
+  }
 }
