@@ -23,3 +23,11 @@ class Main extends PluginBase implements Listener {
   public function onEnable() {
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
+  
+  public function onQuit(PlayerQuitEvent $event) {
+    $player = $event->getPlayer();
+    $name = $player->getName();
+    if(in_array($name, $this->afk)) {
+      unset($this->afk[array_search($name, $this->afk)]);
+    }
+  }
