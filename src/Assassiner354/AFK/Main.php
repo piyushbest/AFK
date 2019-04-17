@@ -47,4 +47,26 @@ class Main extends PluginBase implements Listener {
       $event->setCancelled(true);
     }
   }
+  public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
+    switch($cmd->getName()) {
+      case "afk":
+        if(!$sender instanceof Player) {
+          $sender->sendMessage(TF::RED . "This command can only be used in-game!");
+          return true;
+        }
+        
+        $name = $sender->getName();
+        if(in_array($name, $this->afk)) {
+          unset($this->afk[array_search($name, $this->afk)]);
+          $player->setDisplayName($name);
+          $player->sendMessage(TF::GREEN . "You are no longer AFK!");
+        } else {
+          $this->afk = $name;
+          $sender->setDisplayName(TF::YELLOW . "[AFK] " . $name);
+          $sender->sendMessage(TF::GREEN . "You are now AFK!");
+        }
+      break;
+    }
+    return true;
+  }
 }
